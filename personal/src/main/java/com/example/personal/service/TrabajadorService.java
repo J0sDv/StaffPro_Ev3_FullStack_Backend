@@ -64,6 +64,17 @@ public class TrabajadorService {
         return Map.of("especialidad", especialidad, "disponibles", cantidad);
     }
 
+    // Cuantos trabajadores tiene asignados un cliente (Panel del Cliente)
+    public Map<String, Object> asignados(String cliente) {
+        return Map.of("cliente", cliente.trim(), "cantidad", repo.countByClienteIgnoreCase(cliente.trim()));
+    }
+
+    // Ficha del propio trabajador, buscada por el RUT del token (Panel del Trabajador)
+    public Trabajador miFicha(String rutSesion) {
+        return repo.findByRutLimpio(Rut.limpiar(rutSesion))
+                .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, "No tienes ficha de trabajador."));
+    }
+
     private Trabajador guardar(Trabajador t, TrabajadorRequest d) {
         List<String> errores = new ArrayList<>();
         if (texto(d.nombre()).length() < 3) errores.add("El nombre debe tener al menos 3 caracteres.");

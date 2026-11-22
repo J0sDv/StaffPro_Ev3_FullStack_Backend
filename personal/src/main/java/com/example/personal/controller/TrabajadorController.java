@@ -33,6 +33,18 @@ public class TrabajadorController {
         return service.disponibles(especialidad);
     }
 
+    @Operation(summary = "Cuenta los trabajadores asignados a un cliente")
+    @GetMapping("/asignados")
+    public Map<String, Object> asignados(@RequestParam String cliente) {
+        return service.asignados(cliente);
+    }
+
+    @Operation(summary = "Ficha del trabajador que inicia sesion (usa X-User-Rut del Gateway)")
+    @GetMapping("/mi-ficha")
+    public Trabajador miFicha(@RequestHeader(value = "X-User-Rut", required = false) String rut) {
+        return service.miFicha(rut);
+    }
+
     @Operation(summary = "Obtiene un trabajador por id")
     @GetMapping("/{id}")
     public Trabajador obtener(@PathVariable Long id) {

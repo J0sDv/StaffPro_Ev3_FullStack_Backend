@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface TrabajadorRepository extends JpaRepository<Trabajador, Long> {
     Optional<Trabajador> findByRutLimpio(String rutLimpio);
     List<Trabajador> findByEstadoAndEspecialidad(String estado, String especialidad);
+    long countByClienteIgnoreCase(String cliente);
 }
