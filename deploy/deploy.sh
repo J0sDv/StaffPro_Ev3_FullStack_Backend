@@ -1,7 +1,7 @@
 #!/bin/bash
 # Uso (en el terminal de EC2):  bash ~/backend/deploy/deploy.sh
 set -e
-REPO="$HOME/backend"
+REPO="$HOME/StaffPro_Ev3_FullStack_Backend"
 SERVICIOS="ms-usuarios ms-personal ms-solicitudes api-gateway"
 export MAVEN_OPTS="-Xmx300m"
 
